@@ -1,0 +1,68 @@
+CommitCommentEvent
+  comment
+    object - The comment itself.
+
+CreateEvent
+  ref_type
+    string - The object that was created: “repository”, “branch”, or “tag”
+
+DeleteEvent
+  ref_type
+    string - The object that was deleted: “branch” or “tag”.
+
+DownloadEvent
+
+FollowEvent
+  target
+    object - The user that was just followed.
+
+ForkEvent
+  forkee
+    object - The created repository.
+
+ForkApplyEvent
+  head
+    string - The branch name the patch is applied to.
+
+GistEvent
+  action
+    string - The action that was performed: “create” or “update”
+  gist
+    object - The gist itself.
+
+GollumEvent
+
+IssueCommentEvent
+  action
+    string - The action that was performed on the comment.
+
+IssuesEvent
+  action
+    string - The action that was performed: “opened”, “closed”, or “reopened”.
+
+MemberEvent
+  member
+    object - The user that was added.
+  action
+    string - The action that was performed: “added”.
+
+PublicEvent
+  This is triggered when a private repo is open sourced. Without a doubt: the best GitHub event.
+  (empty payload)
+
+PullRequestEvent
+  action
+    string - The action that was performed: “opened”, “closed”, “synchronize”, or “reopened”.
+
+
+PullRequestReviewCommentEvent
+  comment
+  object - The comment itself.
+
+PushEvent
+
+TeamAddEvent
+
+WatchEvent
+  action
+    string - The action that was performed.

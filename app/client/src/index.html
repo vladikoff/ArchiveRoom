@@ -1,0 +1,336 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <title>GitHub ArchiveRoom - Explore your GitHub archive data in 3D!</title>
+  <meta charset="utf-8">
+
+  <link rel="stylesheet" href="/css/front.css">
+</head>
+<body>
+
+<section id="content">
+<!-- Top Slide -->
+<div id="myCarousel" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="img/s1.jpg" alt="">
+
+      <div class="container">
+        <div class="carousel-caption">
+          <h1>GitHub ArchiveRoom</h1>
+
+          <p class="lead">
+            Explore your GitHub archive data in 3D!
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.carousel -->
+
+<div class="container marketing">
+  <!-- Three columns of text below the carousel -->
+  <div class="row">
+    <div class="span4">
+      <h2>Controls</h2>
+      <table class='table'>
+        <tr>
+          <th>Left Click</th>
+          <td>View Cube Data</td>
+        </tr>
+        <tr>
+          <th>[W],[A],[S],[D]</th>
+          <td>Walk around</td>
+        </tr>
+        <tr>
+          <th>[Space]</th>
+          <td>Jump</td>
+        </tr>
+        <tr>
+          <th>Hold [Space]</th>
+          <td>Fly Up</td>
+        </tr>
+        <tr>
+          <th>Hold [Shift]</th>
+          <td>Fly Down</td>
+        </tr>
+        <tr>
+          <th>[Tab]</th>
+          <td>Screenshot</td>
+        </tr>
+        <tr>
+          <th>[Escape]</th>
+          <td>Release Pointer Lock</td>
+        </tr>
+        <tr class="warning">
+          <td colspan="2" style="font-size: 22px; line-height: 30px;">Use <strong>Chrome 27+</strong><br/> or <strong>Firefox
+            Aurora / Nightly</strong></td>
+        </tr>
+      </table>
+    </div>
+    <!-- /.span4 -->
+    <div class="span8">
+      <h2>Preview</h2>
+      <iframe width="620" height="335" src="http://www.youtube.com/embed/G6CzzCu6wXs?&output=embed&rel=0&theme=light&showinfo=0" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <!-- /.span4 -->
+  </div>
+  <!-- /.row -->
+  <!-- START THE FEATURETTES -->
+  <hr class="featurette-divider">
+
+  <div class="featurette">
+    <h2 class="featurette-heading">View <span
+      class="muted">existing archives.</span></h2>
+
+    <div class="alert">
+      <strong>Note:</strong> Some archives take a while to render, you will experience lower FPS while they are loading.
+    </div>
+    <div class="container-fluid" id='entries'>
+
+    </div>
+
+    <p class='pull-right'>Got a cool archive?
+      <a
+        href="https://docs.google.com/forms/d/1RlxXf-8U1TmXa_yR7XeFHfWOmQQtWBg0bvvuP-3ZUaE/viewform">Request
+        it to be added using this form</a>
+    </p>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="featurette" id="feature-create">
+    <h2 class="featurette-heading">Create <span class="muted">your own.</span>
+    </h2>
+
+    <p class="lead">View your own archive in 3 easy steps with Google BigQuery!</p>
+
+    <div class="row">
+      <div class="span5">
+        <h2>Step 1</h2>
+
+        <p>Go to <a href="https://code.google.com/apis/console/"><strong>Google APIs</strong></a>,
+          login. <br/> Click <strong>"Create Project"</strong>, if asked. <br/>
+          Under <strong>"Services"</strong>, turn on <strong>BigQuery API</strong>:<br/>
+          <img
+            class="img-polaroid" width="380"
+            src='http://v14d.com/i/517e1fae0e6de.png'/></p>
+      </div>
+      <!-- close rowspan -->
+
+      <div class="span7">
+        <h2>Step 2</h2>
+        <p>
+          Go to <a
+          href="https://bigquery.cloud.google.com/table/githubarchive:github.timeline"><strong>githubarchive:github.timeline table</strong></a>
+          and click <strong>"Query Table"</strong> in the top right corner. Paste this query, change <strong>"USERNAME"</strong> to your Github
+          username:
+        </p>
+<pre>
+SELECT type, created_at FROM [githubarchive:github.timeline]
+WHERE actor = "USERNAME"
+</pre>
+        <p>Hit <strong>"Run Query"</strong> and <strong>"Download as CSV"</strong>.</p>
+        <img class="img-polaroid" width="600"
+             src='http://v14d.com/i/517ec6a48e9df.png'/>
+      </div>
+      <!-- close rowspan -->
+
+      <form method="POST" action="/upload-archive" class="form-horizontal" enctype="multipart/form-data">
+        <div class="span8">
+          <h2>Step 3</h2>
+
+          <p>Input your GitHub username, upload the CSV file and click <strong>"View Archive"</strong><br/></p>
+
+          <div class="navbar-inner navbar-form">
+            <div class="control-group">
+              <label class="control-label" for="githubName" style="margin-top: 13px">GitHub Username <br/>(case sensitive)</label>
+
+              <div class="controls">
+                <input type="text" name="username" id="githubName" class="input-large" required placeholder="">
+              </div>
+            </div>
+
+            <div class="control-group">
+
+              <label class="control-label" for="githubCsv">.CSV File From <strong>"Step 2"</strong></label>
+
+              <div class="controls">
+                <input type="file" name="csv" title="Upload" id="githubCsv">
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- close rowspan -->
+
+        <div class="span4">
+          <button type="submit" style="margin-top: 90px;" class='btn btn-large btn-block pull-right btn-primary'>
+            <strong>View Archive</strong>
+          </button>
+          <p class='pull-right' style="margin-top: 20px;">Can't get it to work?<br/>
+            <a
+              href="https://docs.google.com/forms/d/1RlxXf-8U1TmXa_yR7XeFHfWOmQQtWBg0bvvuP-3ZUaE/viewform">Request
+              your archive using this form</a>
+          </p>
+        </div>
+        <!-- close rowspan -->
+      </form>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+  <!-- /END THE FEATURETTES -->
+  <!-- FOOTER -->
+  <footer>
+    <p class="pull-right"><a href="#">Back to top</a></p>
+    <p>
+      created by <a href="https://twitter.com/vladikoff">@vladikoff</a> <br/>
+      report bugs on <a href="https://github.com/vladikoff/ArchiveRoom">github</a> :)
+    </p>
+  </footer>
+</div>
+<!-- /.container -->
+</section>
+
+<script id="view-template" type="text/x-handlebars-template">
+  <div class='span3 entry img-polaroid'>
+    <img src='{{img}}' alt='{{name}}' class='pull-left'/>
+
+    <h3><a href='https://github.com/{{name}}' target="_blank">{{name}}</a></h3>
+    {{#if tw}}
+    <a href='https://twitter.com/{{tw}}' target="_blank" class='tw'><img src='/img/follow.png'/></a>
+    {{/if}}
+    <a href='/view/{{name}}' target="_blank" class='btn'>View</a>
+  </div>
+</script>
+
+<script src="/js/lib/jquery.min.js"></script>
+<script src="/js/lib/handlebars.min.js"></script>
+<script src="/js/lib/bootstrap.file-input.js"></script>
+
+<script>
+  var viewHtml = $('#view-template').html();
+  var viewTmpl = Handlebars.compile(viewHtml);
+  var entries = 0;
+  var first = {
+    name: 'vladikoff',
+    img: 'https://secure.gravatar.com/avatar/3e9c4f562ec682106a091011eea70507?s=75',
+    tw: 'vladikoff',
+    entry: entries
+  };
+
+  var existing = [
+    {
+      name: 'paulirish',
+      img: 'https://secure.gravatar.com/avatar/ffe68d6f71b225f7661d33f2a8908281?s=75',
+      e: 'Heavy'
+    },
+    {
+      name: 'ednapiranha',
+      img: 'https://secure.gravatar.com/avatar/cdade33587fa585c8b432014d8db8e0c?s=75',
+      e: 'Heavy'
+    },
+    {
+      name: 'substack',
+      img: 'https://secure.gravatar.com/avatar/d4a2f12ceae3b7f211b661576d22bfb9?s=75'
+    },
+    {
+      name: 'miketaylr',
+      img: 'https://secure.gravatar.com/avatar/8d8b46576d7de08d9e1500587c0fa8ce?s=75'
+    },
+    {
+      name: 'SlexAxton',
+      img: 'https://secure.gravatar.com/avatar/7ea369b9b67a85f638af2e0f5d708d2d?s=75'
+    },
+    {
+      name: 'nimbupani',
+      img: 'https://secure.gravatar.com/avatar/c64a99fbbc7785e6cf9588a8777ba083?s=75'
+    },
+    {
+      name: 'shama',
+      img: 'https://secure.gravatar.com/avatar/5211ea711bb06482530172f77732f61a?s=75',
+      e: 'Heavy'
+    },
+    {
+      name: 'maxogden',
+      img: 'https://secure.gravatar.com/avatar/fcc9bbfe2a31c5a6225cc287ed7ae2a6?s=75'
+    },
+    {
+      name: 'cowboy',
+      img: 'https://secure.gravatar.com/avatar/978a1a2a80394217a0e39c84f07a7c16?s=75'
+    },
+    {
+      name: 'rmurphey',
+      img: 'https://secure.gravatar.com/avatar/0177cdce6af15e10db15b6bf5dc4e0b0?s=75'
+    },
+    {
+      name: 'ralphholzmann',
+      img: 'https://secure.gravatar.com/avatar/a72c6399a0c8a75f31fc88c470e4a027?s=75'
+    },
+    {
+      name: 'sindresorhus',
+      img: 'https://secure.gravatar.com/avatar/d36a92237c75c5337c17b60d90686bf9?s=75'
+    },
+    {
+      name: 'addyosmani',
+      img: 'https://secure.gravatar.com/avatar/96270e4c3e5e9806cf7245475c00b275?s=75'
+    },
+    {
+      name: 'csnover',
+      img: 'https://secure.gravatar.com/avatar/ffe1561ee79aea59ef8a68a56c365883?s=75'
+    },
+    {
+      name: 'tbranyen',
+      img: 'https://secure.gravatar.com/avatar/21dbcdbf46f8ee3774c1b9b3efadfa9e?s=75'
+    },
+    {
+      name: 'voodootikigod',
+      img: 'https://secure.gravatar.com/avatar/fff2222d0a24009fe938bba62946201a?s=75'
+    },
+    {
+      name: 'igrigorik',
+      img: 'https://secure.gravatar.com/avatar/a17f0025641b4be419a6cd3845e55dd2?s=75'
+    },
+    {
+      name: 'darcyclarke',
+      img: 'https://secure.gravatar.com/avatar/9a2682849ccc5377e10637c38fbb3987?s=75'
+    },
+    {
+      name: 'mdo',
+      img: 'https://secure.gravatar.com/avatar/bc4ab438f7a4ce1c406aadc688427f2c?s=75'
+    }
+  ];
+
+  $('#entries').append(viewTmpl(first));
+
+  existing.forEach(function (user, i) {
+    entries++;
+    user.entry = entries;
+    var tmpl = viewTmpl(user);
+    $('#entries').append(tmpl);
+  });
+
+  $("#content a[href*='://']").attr("target", "_blank");
+</script>
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-40664595-1', 'archiveroom.net');
+  ga('send', 'pageview');
+
+</script>
+
+</body>
+</html>
