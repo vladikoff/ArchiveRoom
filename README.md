@@ -32,7 +32,9 @@ Screenshot functionality creates a way of saving interesting discoveries and can
 ## Screenshots
 
 ![](http://v14d.com/u/gar1.png)
+
 ![](http://v14d.com/u/gar2.png)
+
 ![](http://v14d.com/u/gar3.png)
 
 ## Installation Notes
