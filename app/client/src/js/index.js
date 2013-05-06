@@ -117,6 +117,7 @@ module.exports = function (opts, setup) {
 
 function defaultSetup(game, avatar) {
   var blockViewer;
+  var req;
   var TABKEY = 9;
   var ENTERKEY = 13;
   var pos;
@@ -194,7 +195,10 @@ function defaultSetup(game, avatar) {
       if (timeFrame) {
         var timeQuery = timeFrame.replace(/ /g, '-').replace(/:/g, '-');
         blockViewer.show(firePos, loadingData);
-        $.getJSON('/entry/' + user + '/' + timeQuery)
+        if (req) {
+          req.abort();
+        }
+        req = $.getJSON('/entry/' + user + '/' + timeQuery)
          .done(function (data) {
             var context = data.result;
             if (context && context.created_at) {
@@ -205,7 +209,9 @@ function defaultSetup(game, avatar) {
             }
          })
          .fail(function(jqxhr, textStatus, error) {
-            blockViewer.show(firePos, errorData);
+            if (error && error !== 'abort') {
+              blockViewer.show(firePos, errorData);
+            }
          });
       }
     }

@@ -41,6 +41,7 @@ Screenshot functionality creates a way of saving interesting discoveries and can
 
 * Clone this repo
   * `npm install`
+  * `npm install -g browserify`
   * `grunt shell:br` to compile the voxel bundle
   * Run `grunt` for debug, `grunt prod` for production, `grunt dev` for development
 * To view cube data you need a copy of the GitHub archive from March 2012 until May 2013 or so.
