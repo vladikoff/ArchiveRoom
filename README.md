@@ -47,6 +47,8 @@ Screenshot functionality creates a way of saving interesting discoveries and can
 * To view cube data you need a copy of the GitHub archive from March 2012 until May 2013 or so.
   * Put the archive data in `[project]/data/raw/`
   * You can upload CSV files using the web interface or put them into `[project]/data/csv` folder
+* Start the server from project root, using `node app/server/serve.js`
+* Navigate to `http://localhost:9987`
 
 ## Known Issues
 
