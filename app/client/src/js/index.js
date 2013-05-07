@@ -169,6 +169,7 @@ function defaultSetup(game, avatar) {
        })
        .fail(function () {
           alert('Sorry, user not found.');
+          window.location.replace("/#feature-create");
        });
     }
     // fancy labels
