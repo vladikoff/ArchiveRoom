@@ -49,7 +49,7 @@ module.exports = function(grunt) {
       br: {
         command: [
           'mkdir app/client/tmp',
-          'browserify app/client/src/js/voxel-bundle.js > app/client/tmp/voxel-bundle.js'].join('&&'),
+          'node_modules/.bin/browserify app/client/src/js/voxel-bundle.js > app/client/tmp/voxel-bundle.js'].join('&&'),
         options: {
           stdout: true
         }
