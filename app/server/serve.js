@@ -11,7 +11,7 @@ var request = require('request');
 
 var worker = require('./worker.js');
 var f = "";
-var port = 9987;
+var port = process.env.PORT || 9987;
 console.log('Cluster Port: ' + port);
 
 
