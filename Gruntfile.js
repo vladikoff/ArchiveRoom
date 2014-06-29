@@ -5,7 +5,6 @@ var APP_OUT = "app/client/out/";
 
 module.exports = function(grunt) {
 
-  // Project configuration.
   grunt.initConfig({
     clean: {
       build: [APP_OUT]
@@ -78,7 +77,6 @@ module.exports = function(grunt) {
     }
   });
 
-  // Load contrib tasks
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-less');
